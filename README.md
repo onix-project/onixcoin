@@ -1,6 +1,5 @@
 # ONIXCOIN
 
-Repositorio de César Vásquez.
 
 ## Requisitos para compilar (ubuntu):
 
