@@ -1,14 +1,16 @@
 # ONIXCOIN
 
 
-## Requisitos para compilar (ubuntu):
+## Requisitos para compilar (Ubuntu):
 
+## Requirements to compile (Ubuntu)
 ```
 sudo apt-get install git build-essential libssl-dev libboost-all-dev libqrencode-dev libdb++-dev libminiupnpc-dev qt-sdk -y
 ```
 
-## Compilar ONIXd (consola)
+## Compilar ONIXd (Consola)
 
+## Compiling ONIXd (Console)
 ```
 git clone https://github.com/heellxz/onixcoin.git
 cd onixcoin/src
@@ -17,6 +19,7 @@ make -f makefile.unix
 
 ## Compilar ONIX-qt (Interfaz gráfica)
 
+## Compiling ONIX-qt (Graphical Interface)
 ```
 git clone https://github.com/onix-project/onixcoin.git
 cd onixcoin
