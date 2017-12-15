@@ -18,7 +18,7 @@ make -f makefile.unix
 ## Compilar ONIX-qt (Interfaz gráfica)
 
 ```
-git clone https://github.com/heellxz/onixcoin.git
+git clone https://github.com/onix-project/onixcoin.git
 cd onixcoin
 qmake USE_UPNP=- USE_QRCODE=0 USE_IPV6=0 
 make
