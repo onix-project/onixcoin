@@ -12,7 +12,7 @@ sudo apt-get install git build-essential libssl-dev libboost-all-dev libqrencode
 
 ## Compiling ONIXd (Console)
 ```
-git clone https://github.com/heellxz/onixcoin.git
+git clone https://github.com/onix-project/onixcoin.git
 cd onixcoin/src
 make -f makefile.unix
 ```
