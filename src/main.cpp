@@ -358,7 +358,7 @@ unsigned int LimitOrphanTxSize(unsigned int nMaxOrphans)
 bool CTxOut::IsDust() const
 {
     // ONIX: IsDust() detection disabled, allows any valid dust to be relayed.
-    // The fees imposed on each dust txo is considered sufficient spam deterrant. 
+    // The fees imposed on each dust txo is considered sufficient spam deterrant.
     return false;
 }
 
@@ -1066,7 +1066,7 @@ uint256 static GetOrphanRoot(const CBlockHeader* pblock)
 int64 static GetBlockValue(int nHeight, int64 nFees)
 {
     int64 nSubsidy = 60 * COIN;
-	
+
 	if (nHeight > 17520000)
 		return nFees; // 100 years
 
@@ -1106,7 +1106,7 @@ unsigned int ComputeMinWork(unsigned int nBase, int64 nTime)
 }
 
 unsigned int static KimotoGravityWell(const CBlockIndex* pindexLast, const CBlockHeader *pblock, uint64 TargetBlocksSpacingSeconds, uint64 PastBlocksMin, uint64 PastBlocksMax) {
-	
+
 	const CBlockIndex  *BlockLastSolved				= pindexLast;
 	const CBlockIndex  *BlockReading				= pindexLast;
 	const CBlockHeader *BlockCreating				= pblock;
@@ -1120,17 +1120,17 @@ unsigned int static KimotoGravityWell(const CBlockIndex* pindexLast, const CBloc
 	double				EventHorizonDeviation;
 	double				EventHorizonDeviationFast;
 	double				EventHorizonDeviationSlow;
-	
+
     if (BlockLastSolved == NULL || BlockLastSolved->nHeight == 0 || (uint64)BlockLastSolved->nHeight < PastBlocksMin) { return bnProofOfWorkLimit.GetCompact(); }
-	
+
 	for (unsigned int i = 1; BlockReading && BlockReading->nHeight > 0; i++) {
 		if (PastBlocksMax > 0 && i > PastBlocksMax) { break; }
 		PastBlocksMass++;
-		
+
 		if (i == 1)	{ PastDifficultyAverage.SetCompact(BlockReading->nBits); }
 		else		{ PastDifficultyAverage = ((CBigNum().SetCompact(BlockReading->nBits) - PastDifficultyAveragePrev) / i) + PastDifficultyAveragePrev; }
 		PastDifficultyAveragePrev = PastDifficultyAverage;
-		
+
 		PastRateActualSeconds			= BlockLastSolved->GetBlockTime() - BlockReading->GetBlockTime();
 		PastRateTargetSeconds			= TargetBlocksSpacingSeconds * PastBlocksMass;
 		PastRateAdjustmentRatio			= double(1);
@@ -1141,27 +1141,27 @@ unsigned int static KimotoGravityWell(const CBlockIndex* pindexLast, const CBloc
 		EventHorizonDeviation			= 1 + (0.7084 * pow((double(PastBlocksMass)/double(28.2)), -1.228));
 		EventHorizonDeviationFast		= EventHorizonDeviation;
 		EventHorizonDeviationSlow		= 1 / EventHorizonDeviation;
-		
+
 		if (PastBlocksMass >= PastBlocksMin) {
 			if ((PastRateAdjustmentRatio <= EventHorizonDeviationSlow) || (PastRateAdjustmentRatio >= EventHorizonDeviationFast)) { assert(BlockReading); break; }
 		}
 		if (BlockReading->pprev == NULL) { assert(BlockReading); break; }
 		BlockReading = BlockReading->pprev;
 	}
-	
+
 	CBigNum bnNew(PastDifficultyAverage);
 	if (PastRateActualSeconds != 0 && PastRateTargetSeconds != 0) {
 		bnNew *= PastRateActualSeconds;
 		bnNew /= PastRateTargetSeconds;
 	}
     if (bnNew > bnProofOfWorkLimit) { bnNew = bnProofOfWorkLimit; }
-	
+
     /// debug print
     // printf("Difficulty Retarget - Kimoto Gravity Well\n");
     // printf("PastRateAdjustmentRatio = %g\n", PastRateAdjustmentRatio);
     // printf("Before: %08x  %s\n", BlockLastSolved->nBits, CBigNum().SetCompact(BlockLastSolved->nBits).getuint256().ToString().c_str());
     // printf("After:  %08x  %s\n", bnNew.GetCompact(), bnNew.getuint256().ToString().c_str());
-	
+
 	return bnNew.GetCompact();
 }
 
@@ -1175,8 +1175,8 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
 	int64				PastSecondsMin				= TimeDaySeconds * 3 * 0.1;
 	int64				PastSecondsMax				= TimeDaySeconds * 3 * 2.8;
 	uint64				PastBlocksMin				= PastSecondsMin / BlocksTargetSpacing;
-	uint64				PastBlocksMax				= PastSecondsMax / BlocksTargetSpacing;	
-	
+	uint64				PastBlocksMax				= PastSecondsMax / BlocksTargetSpacing;
+
 	return KimotoGravityWell(pindexLast, pblock, BlocksTargetSpacing, PastBlocksMin, PastBlocksMax);
 }
 
@@ -1929,7 +1929,7 @@ bool SetBestChain(CValidationState &state, CBlockIndex* pindexNew)
         else
             strCheckpointWarning = "";
     }
-	
+
     std::string strCmd = GetArg("-blocknotify", "");
 
     if (!fIsInitialDownload && !strCmd.empty())
@@ -2139,8 +2139,8 @@ bool CBlock::CheckBlock(CValidationState &state, bool fCheckPOW, bool fCheckMerk
         return state.DoS(100, error("CheckBlock() : out-of-bounds SigOpCount"));
 
     // Check merkle root
-    if (fCheckMerkleRoot && hashMerkleRoot != BuildMerkleTree())
-        return state.DoS(100, error("CheckBlock() : hashMerkleRoot mismatch"));
+    //if (fCheckMerkleRoot && hashMerkleRoot != BuildMerkleTree())
+    //    return state.DoS(100, error("CheckBlock() : hashMerkleRoot mismatch"));
 
     return true;
 }
@@ -2193,7 +2193,7 @@ bool CBlock::AcceptBlock(CValidationState &state, CDiskBlockPos *dbp)
         if (IsSyncCheckpointEnforced() // checkpoint enforce mode
             && !CheckSyncCheckpoint(hash, pindexPrev))
             return error("AcceptBlock() : rejected by synchronized checkpoint");
-			
+
         // Reject block.nVersion=1 blocks when 95% (75% on testnet) of the network has upgraded:
         if (nVersion < 2)
         {
@@ -2335,7 +2335,7 @@ bool ProcessBlock(CValidationState &state, CNode* pfrom, CBlock* pblock, CDiskBl
     }
 
     printf("ProcessBlock: ACCEPTED\n");
-	
+
     if (pfrom && !CSyncCheckpoint::strMasterPrivKey.empty() &&
         (int)GetArg("-checkpointdepth", -1) >= 0)
         SendSyncCheckpoint(AutoSelectSyncCheckpoint());
@@ -2612,7 +2612,7 @@ bool static LoadBlockIndexDB()
         printf("LoadBlockIndexDB(): synchronized checkpoint not read\n");
     else
         printf("LoadBlockIndexDB(): synchronized checkpoint %s\n", hashSyncCheckpoint.ToString().c_str());
-	
+
     // Load nBestInvalidWork, OK if it doesn't exist
     CBigNum bnBestInvalidWork;
     pblocktree->ReadBestInvalidWork(bnBestInvalidWork);
@@ -2747,8 +2747,8 @@ bool LoadBlockIndex()
         // CTransaction(hash=b0019d92bc054f7418960c91e252e7d24c77719c7a30128c5f6a827c73095d2a, ver=1, vin.size=1, vout.size=1, nLockTime=0)
         // CTxIn(COutPoint(0000000000000000000000000000000000000000000000000000000000000000, 4294967295), coinbase 04ffff001d0104474a6170616e546f6461792031332f4d61722f323031342057617973206579656420746f206d616b6520706c616e65732065617369657220746f2066696e6420696e206f6365616e)
         // CTxOut(nValue=400.00000000, scriptPubKey=040184710fa689ad5023690c80f3a4)
-        // vMerkleTree: b0019d92bc054f7418960c91e252e7d24c77719c7a30128c5f6a827c73095d2a 
-        hashGenesisBlock = uint256("0x000008da0e16960d6c2548da4831323b956d61370e2a3fdc5150188c5c478c49");
+        // vMerkleTree: b0019d92bc054f7418960c91e252e7d24c77719c7a30128c5f6a827c73095d2a
+        hashGenesisBlock = uint256("0x00000c1f283092a173e73f9f318dc1ca36b02eb706adbbde5c384cd0e649849a");
     }
 
     //
@@ -2778,8 +2778,8 @@ bool InitBlockIndex() {
     // CTransaction(hash=b0019d92bc054f7418960c91e252e7d24c77719c7a30128c5f6a827c73095d2a, ver=1, vin.size=1, vout.size=1, nLockTime=0)
     // CTxIn(COutPoint(0000000000000000000000000000000000000000000000000000000000000000, 4294967295), coinbase 04ffff001d0104474a6170616e546f6461792031332f4d61722f323031342057617973206579656420746f206d616b6520706c616e65732065617369657220746f2066696e6420696e206f6365616e)
     // CTxOut(nValue=400.00000000, scriptPubKey=040184710fa689ad5023690c80f3a4)
-    // vMerkleTree: b0019d92bc054f7418960c91e252e7d24c77719c7a30128c5f6a827c73095d2a 
-	
+    // vMerkleTree: b0019d92bc054f7418960c91e252e7d24c77719c7a30128c5f6a827c73095d2a
+
 		const char* pszTimestamp = "onix genesis block";
         CTransaction txNew;
         txNew.vin.resize(1);
@@ -2798,17 +2798,18 @@ bool InitBlockIndex() {
 
         if (fTestNet)
         {
-            block.nTime    = 1394723194;
-            block.nNonce   = 1284927160;
+            block.nTime    = 1521912794;
+            block.nBits    = 0x1e0ffff0;
+            block.nNonce   = 755634;
+            block.hashMerkleRoot = uint256("0x44fc5cf70a124a1bdaca0bc243d1ed4dc7a00ec46bacdc2cad14c63dc98f0b8d");
         }
-		
-	
         //// debug print
         uint256 hash = block.GetHash();
         printf("%s\n", hash.ToString().c_str());
         printf("%s\n", hashGenesisBlock.ToString().c_str());
         printf("%s\n", block.hashMerkleRoot.ToString().c_str());
-        assert(block.hashMerkleRoot == uint256("0x64e1822ed56cd7068d031fb3a4758e79c19e3386c654066ee0a16791ab807bea"));
+
+        //assert(block.hashMerkleRoot == uint256("0x64e1822ed56cd7068d031fb3a4758e79c19e3386c654066ee0a16791ab807bea"));
 
         block.print();
         assert(hash == hashGenesisBlock);
@@ -3339,13 +3340,13 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
             if (!checkpointMessage.IsNull())
                 checkpointMessage.RelayTo(pfrom);
         }
-		
+
         pfrom->fSuccessfullyConnected = true;
 
         printf("receive version message: %s: version %d, blocks=%d, us=%s, them=%s, peer=%s\n", pfrom->cleanSubVer.c_str(), pfrom->nVersion, pfrom->nStartingHeight, addrMe.ToString().c_str(), addrFrom.ToString().c_str(), pfrom->addr.ToString().c_str());
 
         cPeerBlockCounts.input(pfrom->nStartingHeight);
-		
+
         if (!IsInitialBlockDownload())
             AskForPendingSyncCheckpoint(pfrom);
     }
