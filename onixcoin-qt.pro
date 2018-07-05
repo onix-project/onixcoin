@@ -3,7 +3,7 @@ TARGET = ONIX-qt
 macx:TARGET = "ONIX-Qt"
 VERSION = 1.0.0.1
 INCLUDEPATH += src src/json src/qt
-QT += network
+QT += core gui network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 lessThan(QT_MAJOR_VERSION, 5): CONFIG += static
 DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE
@@ -183,7 +183,6 @@ HEADERS += src/qt/bitcoingui.h \
     src/walletdb.h \
     src/script.h \
     src/init.h \
-    src/irc.h \
     src/bloom.h \
     src/mruset.h \
     src/checkqueue.h \
@@ -275,7 +274,6 @@ SOURCES += src/qt/bitcoin.cpp \
     src/script.cpp \
     src/main.cpp \
     src/init.cpp \
-    src/irc.cpp \
     src/net.cpp \
     src/bloom.cpp \
     src/checkpoints.cpp \
@@ -447,7 +445,7 @@ win32:!contains(MINGW_THREAD_BUGFIX, 0) {
 
 macx:HEADERS += src/qt/macdockiconhandler.h
 macx:OBJECTIVE_SOURCES += src/qt/macdockiconhandler.mm
-macx:LIBS += -framework Foundation -framework ApplicationServices -framework AppKit
+macx:LIBS += -framework Foundation -framework ApplicationServices -framework AppKit -framework CoreServices
 macx:DEFINES += MAC_OSX MSG_NOSIGNAL=0
 macx:ICON = src/qt/res/icons/bitcoin.icns
 macx:QMAKE_CFLAGS_THREAD += -pthread
