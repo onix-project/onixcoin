@@ -13,6 +13,7 @@
 #include <sys/resource.h>
 #endif
 
+#include <fs.h>
 #include "util.h"
 #include "sync.h"
 #include "version.h"
@@ -1449,7 +1450,7 @@ boost::filesystem::path GetTempPath() {
 #else
     path = boost::filesystem::path("/tmp");
 #endif
-    if (path.empty() || !boost::filesystem::is_directory(path)) {
+    if (path.empty() || !fs::is_directory(path)) {
         printf("GetTempPath(): failed to find temp path\n");
         return boost::filesystem::path("");
     }
