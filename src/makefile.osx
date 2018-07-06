@@ -76,7 +76,7 @@ CFLAGS += -Wall -Wextra -Wformat -Wformat-security -Wno-unused-parameter \
     $(DEBUGFLAGS) $(DEFS) $(INCLUDEPATHS)
 
 OBJS= \
-    leveldb/libleveldb.a \
+    leveldb/out-static/libleveldb.a \
     obj/alert.o \
     obj/version.o \
     obj/checkpoints.o \
@@ -142,11 +142,11 @@ all: ONIXd
 #
 # LevelDB support
 #
-LIBS += $(CURDIR)/leveldb/libleveldb.a $(CURDIR)/leveldb/libmemenv.a
+LIBS += $(CURDIR)/leveldb/out-static/libleveldb.a $(CURDIR)/leveldb/out-static/libmemenv.a
 DEFS += $(addprefix -I,$(CURDIR)/leveldb/include)
 DEFS += $(addprefix -I,$(CURDIR)/leveldb/helpers)
-leveldb/libleveldb.a:
-	@echo "Building LevelDB ..." && cd leveldb && $(MAKE) CC=$(CC) CXX=$(CXX) OPT="$(CXXFLAGS)" libleveldb.a libmemenv.a && cd ..
+leveldb/out-static/libleveldb.a:
+	@echo "Building LevelDB ..." && cd leveldb && $(MAKE) CC=$(CC) CXX=$(CXX) OPT="$(CXXFLAGS)" out-static/libleveldb.a out-static/libmemenv.a && cd ..
 
 # auto-generated dependencies:
 -include obj/*.P
@@ -154,6 +154,8 @@ leveldb/libleveldb.a:
 obj/build.h: FORCE
 	/bin/sh ../share/genbuild.sh obj/build.h
 version.cpp: obj/build.h
+compat/strnlen.cpp: obj/build.h
+
 DEFS += -DHAVE_BUILD_INFO
 
 obj/%.o: %.cpp
