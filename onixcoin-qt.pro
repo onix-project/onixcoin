@@ -28,6 +28,7 @@ isEmpty(MINIUPNPC_INCLUDE_PATH) {
 }
 
 isEmpty(MINIUPNPC_LIB_PATH) {
+    MINIUPNPC_LIB_PATH=/usr/lib/x86_64-linux-gnu/libminiupnpc.a
     macx:MINIUPNPC_LIB_PATH = /usr/local/opt/miniupnpc/lib/libminiupnpc.a
 }
 
@@ -482,6 +483,10 @@ win32:LIBS += -lws2_32 -lshlwapi -lmswsock -lole32 -loleaut32 -luuid -lgdi32
 
 win32:LIBS += -lboost_system$$BOOST_LIB_SUFFIX -lboost_filesystem$$BOOST_LIB_SUFFIX -lboost_program_options$$BOOST_LIB_SUFFIX -lboost_thread$$BOOST_THREAD_LIB_SUFFIX -lboost_chrono$$BOOST_LIB_SUFFIX
 macx:LIBS += $$BOOST_LIB_PATH/libboost_system-mt.a $$BOOST_LIB_PATH/libboost_filesystem-mt.a $$BOOST_LIB_PATH/libboost_program_options-mt.a $$BOOST_LIB_PATH/libboost_thread-mt.a $$BOOST_LIB_PATH/libboost_chrono-mt.a
+
+!win32:!macx {
+    LIBS += -lboost_system$$BOOST_LIB_SUFFIX -lboost_filesystem$$BOOST_LIB_SUFFIX -lboost_program_options$$BOOST_LIB_SUFFIX -lboost_thread$$BOOST_THREAD_LIB_SUFFIX -lboost_chrono$$BOOST_LIB_SUFFIX
+}
 
 contains(RELEASE, 1) {
     !win32:!macx {
