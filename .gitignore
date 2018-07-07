@@ -6,3 +6,4 @@ Makefile
 src/ONIXd
 *.qm
 qrc_bitcoin.cpp
+onixcoin-qt
