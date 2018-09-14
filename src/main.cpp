@@ -2138,10 +2138,12 @@ bool CBlock::CheckBlock(CValidationState &state, bool fCheckPOW, bool fCheckMerk
     if (nSigOps > MAX_BLOCK_SIGOPS)
         return state.DoS(100, error("CheckBlock() : out-of-bounds SigOpCount"));
 
-    // Check merkle root
-    //if (fCheckMerkleRoot && hashMerkleRoot != BuildMerkleTree())
-    //    return state.DoS(100, error("CheckBlock() : hashMerkleRoot mismatch"));
-
+    // Check merkle root if not testnet
+    if(!fTestNet)
+    {
+        if (fCheckMerkleRoot && hashMerkleRoot != BuildMerkleTree())
+            return state.DoS(100, error("CheckBlock() : hashMerkleRoot mismatch"));
+    }
     return true;
 }
 
@@ -2809,7 +2811,11 @@ bool InitBlockIndex() {
         printf("%s\n", hashGenesisBlock.ToString().c_str());
         printf("%s\n", block.hashMerkleRoot.ToString().c_str());
 
-        //assert(block.hashMerkleRoot == uint256("0x64e1822ed56cd7068d031fb3a4758e79c19e3386c654066ee0a16791ab807bea"));
+        if(!fTestNet)
+        {
+            assert(block.hashMerkleRoot == uint256("0x64e1822ed56cd7068d031fb3a4758e79c19e3386c654066ee0a16791ab807bea"));
+        }
+        
 
         block.print();
         assert(hash == hashGenesisBlock);
