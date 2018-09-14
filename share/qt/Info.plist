@@ -7,7 +7,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleGetInfoString</key>
-	<string>$VERSION, Copyright © 2009-$YEAR The Bitcoin developers</string>
+	<string>$VERSION, Copyright © 2009-$YEAR The Onix developers</string>
 	<key>CFBundleShortVersionString</key>
 	<string>$VERSION</string>
 	<key>CFBundleVersion</key>
@@ -15,16 +15,16 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleExecutable</key>
-	<string>ONIX-Qt</string>
+	<string>OnixCoin-Qt</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.ONIX.ONIX-Qt</string>
+	<string>org.OnixCoin.OnixCoin-Qt</string>
         <key>CFBundleURLTypes</key>
         <array>
           <dict>
             <key>CFBundleTypeRole</key>
             <string>Editor</string>
             <key>CFBundleURLName</key>
-            <string>org.ONIX.ONIXPayment</string>
+            <string>org.OnixCoin.OnixCoinPayment</string>
             <key>CFBundleURLSchemes</key>
             <array>
               <string>ONIX</string>
