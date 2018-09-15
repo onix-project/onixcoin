@@ -5,6 +5,8 @@
 #include <vector>
 #include <map>
 
+#pragma warning(disable:4717)  //bogus warning from MS
+
 #include "allocators.h" /* for SecureString */
 
 class OptionsModel;
