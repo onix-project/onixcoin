@@ -9,6 +9,7 @@ DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE
 CONFIG += no_include_pwd
 CONFIG += thread
 
+
 # for boost 1.37, add -mt to the boost libraries
 # use: qmake BOOST_LIB_SUFFIX=-mt
 # for boost thread win32 with _win32 sufix
@@ -51,7 +52,7 @@ contains(RELEASE, 1) {
     !win32:!macx {
         # Linux: static link and extra security (see: https://wiki.debian.org/Hardening)
         LIBS += -Wl,-Bstatic -Wl,-z,relro -Wl,-z,now
-    }
+    }    
 }
 
 !win32 {
@@ -427,7 +428,7 @@ isEmpty(BOOST_LIB_PATH) {
 }
 
 isEmpty(BOOST_INCLUDE_PATH) {
-    BDB_INCLUDE_PATH = /usr/include/boost
+    BOOST_INCLUDE_PATH = /usr/include/boost
     macx:BOOST_INCLUDE_PATH = /usr/local/opt/boost162/include
 }
 
@@ -458,6 +459,7 @@ win32:!contains(MINGW_THREAD_BUGFIX, 0) {
     LIBS += -lrt
     # _FILE_OFFSET_BITS=64 lets 32-bit fopen transparently support large files.
     DEFINES += _FILE_OFFSET_BITS=64
+    LIBS += $$BOOST_LIB_PATH/libboost_system.a $$BOOST_LIB_PATH/libboost_filesystem.a $$BOOST_LIB_PATH/libboost_program_options.a $$BOOST_LIB_PATH/libboost_thread.a $$BOOST_LIB_PATH/libboost_chrono.a
 }
 
 macx:HEADERS += src/qt/macdockiconhandler.h src/qt/macnotificationhandler.h
@@ -484,7 +486,6 @@ win32:LIBS += -lssl -lcrypto -ldb_cxx$$BDB_LIB_SUFFIX
 # -lgdi32 has to happen after -lcrypto (see  #681)
 win32:LIBS += -lws2_32 -lshlwapi -lmswsock -lole32 -loleaut32 -luuid -lgdi32
 
-LIBS += $$BOOST_LIB_PATH/libboost_system.a $$BOOST_LIB_PATH/libboost_filesystem.a $$BOOST_LIB_PATH/libboost_program_options.a $$BOOST_LIB_PATH/libboost_thread.a $$BOOST_LIB_PATH/libboost_chrono.a
 win32:LIBS += -lboost_system$$BOOST_LIB_SUFFIX -lboost_filesystem$$BOOST_LIB_SUFFIX -lboost_program_options$$BOOST_LIB_SUFFIX -lboost_thread$$BOOST_THREAD_LIB_SUFFIX -lboost_chrono$$BOOST_LIB_SUFFIX
 macx:LIBS += $$BOOST_LIB_PATH/libboost_system-mt.a $$BOOST_LIB_PATH/libboost_filesystem-mt.a $$BOOST_LIB_PATH/libboost_program_options-mt.a $$BOOST_LIB_PATH/libboost_thread-mt.a $$BOOST_LIB_PATH/libboost_chrono-mt.a
 
