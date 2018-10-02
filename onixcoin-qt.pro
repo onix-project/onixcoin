@@ -24,10 +24,12 @@ MOC_DIR = build
 UI_DIR = build
 
 isEmpty(MINIUPNPC_INCLUDE_PATH) {
+    MINIUPNPC_INCLUDE_PATH = /usr/include/miniupnpc/
     macx:MINIUPNPC_INCLUDE_PATH = /usr/local/opt/miniupnpc/include
 }
 
 isEmpty(MINIUPNPC_LIB_PATH) {
+    MINIUPNPC_LIB_PATH = /usr/lib/x86_64-linux-gnu/libminiupnpc.a
     macx:MINIUPNPC_LIB_PATH = /usr/local/opt/miniupnpc/lib/libminiupnpc.a
 }
 
@@ -42,9 +44,9 @@ isEmpty(QRENCODE_LIB_PATH) {
 # use: qmake "RELEASE=1"
 contains(RELEASE, 1) {
     # Mac: compile for maximum compatibility (10.11, 64-bit)
-    macx:QMAKE_CXXFLAGS += -mmacosx-version-min=10.11 -arch x86_64 
-    macx:QMAKE_CFLAGS += -mmacosx-version-min=10.11 -arch x86_64 
-    macx:QMAKE_OBJECTIVE_CFLAGS += -mmacosx-version-min=10.11 -arch x86_64 
+    macx:QMAKE_CXXFLAGS += -mmacosx-version-min=10.11 -arch x86_64
+    macx:QMAKE_CFLAGS += -mmacosx-version-min=10.11 -arch x86_64
+    macx:QMAKE_OBJECTIVE_CFLAGS += -mmacosx-version-min=10.11 -arch x86_64
 
     !win32:!macx {
         # Linux: static link and extra security (see: https://wiki.debian.org/Hardening)
@@ -420,10 +422,12 @@ isEmpty(BDB_INCLUDE_PATH) {
 }
 
 isEmpty(BOOST_LIB_PATH) {
+    BOOST_LIB_PATH = /usr/lib/x86_64-linux-gnu
     macx:BOOST_LIB_PATH = /usr/local/opt/boost162/lib
 }
 
 isEmpty(BOOST_INCLUDE_PATH) {
+    BDB_INCLUDE_PATH = /usr/include/boost
     macx:BOOST_INCLUDE_PATH = /usr/local/opt/boost162/include
 }
 
@@ -480,6 +484,7 @@ win32:LIBS += -lssl -lcrypto -ldb_cxx$$BDB_LIB_SUFFIX
 # -lgdi32 has to happen after -lcrypto (see  #681)
 win32:LIBS += -lws2_32 -lshlwapi -lmswsock -lole32 -loleaut32 -luuid -lgdi32
 
+LIBS += $$BOOST_LIB_PATH/libboost_system.a $$BOOST_LIB_PATH/libboost_filesystem.a $$BOOST_LIB_PATH/libboost_program_options.a $$BOOST_LIB_PATH/libboost_thread.a $$BOOST_LIB_PATH/libboost_chrono.a
 win32:LIBS += -lboost_system$$BOOST_LIB_SUFFIX -lboost_filesystem$$BOOST_LIB_SUFFIX -lboost_program_options$$BOOST_LIB_SUFFIX -lboost_thread$$BOOST_THREAD_LIB_SUFFIX -lboost_chrono$$BOOST_LIB_SUFFIX
 macx:LIBS += $$BOOST_LIB_PATH/libboost_system-mt.a $$BOOST_LIB_PATH/libboost_filesystem-mt.a $$BOOST_LIB_PATH/libboost_program_options-mt.a $$BOOST_LIB_PATH/libboost_thread-mt.a $$BOOST_LIB_PATH/libboost_chrono-mt.a
 
