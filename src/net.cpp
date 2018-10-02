@@ -1200,10 +1200,12 @@ static const char *strMainNetDNSSeed[][2] = {
 	{"seed2.cryptolife.net", "seed2.cryptolife.net"},
 	{"seed3.cryptolife.net", "seed3.cryptolife.net"},
 	{"electrum6.cryptolife.net", "electrum6.cryptolife.net"},
+    {"seed.hbastidas.com.ve", "seed.hbastidas.com.ve"},
     {NULL, NULL}
 };
 
 static const char *strTestNetDNSSeed[][2] = {
+    {"testnet.hbastidas.com.ve", "testnet.hbastidas.com.ve"},
     {NULL, NULL}
 };
 
