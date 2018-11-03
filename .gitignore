@@ -1,0 +1,8 @@
+*.DS_Store
+OnixCoin-Qt.app
+.qmake.stash
+build
+Makefile
+src/ONIXd
+*.qm
+qrc_bitcoin.cpp
