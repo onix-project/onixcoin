@@ -1,0 +1,6 @@
+*.qm
+.DS_Store
+.qmake.stash
+Makefile
+ONIX-qt.app
+build.h
