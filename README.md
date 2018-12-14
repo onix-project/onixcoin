@@ -23,6 +23,6 @@ make -f makefile.unix
 ```
 git clone https://github.com/onix-project/onixcoin.git
 cd onixcoin
-qmake USE_UPNP=- USE_QRCODE=0 USE_IPV6=0 
+qmake USE_UPNP=1 USE_QRCODE=1
 make
 ```
