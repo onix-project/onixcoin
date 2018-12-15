@@ -316,7 +316,6 @@ std::string HelpMessage()
         "  -onlynet=<net>         " + _("Only connect to nodes in network <net> (IPv4, IPv6 or Tor)") + "\n" +
         "  -discover              " + _("Discover own IP address (default: 1 when listening and no -externalip)") + "\n" +
         "  -checkpoints           " + _("Only accept block chain matching built-in checkpoints (default: 1)") + "\n" +
-        "  -irc                   " + _("Find peers using internet relay chat (default: 0)") + "\n" +
         "  -listen                " + _("Accept connections from outside (default: 1 if no -proxy or -connect)") + "\n" +
         "  -bind=<addr>           " + _("Bind to given address and always listen on it. Use [host]:port notation for IPv6") + "\n" +
         "  -dnsseed               " + _("Find peers using DNS lookup (default: 1 unless -connect)") + "\n" +
@@ -508,9 +507,6 @@ bool AppInit2(boost::thread_group& threadGroup)
     if (fBloomFilters)
         nLocalServices |= NODE_BLOOM;
 		
-	// IRC on
-	SoftSetBoolArg("-irc", true);
-
     if (mapArgs.count("-bind")) {
         // when specifying an explicit binding address, you want to listen on it
         // even when -connect or -proxy is specified
@@ -643,7 +639,7 @@ bool AppInit2(boost::thread_group& threadGroup)
         if (!SetCheckpointPrivKey(GetArg("-checkpointkey", "")))
             return InitError(_("Unable to sign checkpoint, wrong checkpointkey?"));
     }
-	
+
     // ********************************************************* Step 4: application initialization: dir lock, daemonize, pidfile, debug log
 
     std::string strDataDir = GetDataDir().string();
@@ -1134,7 +1130,7 @@ bool AppInit2(boost::thread_group& threadGroup)
     InitRPCMining();
     if (fServer)
         StartRPCThreads();
-		
+
 	// Generate coins in the background
     GenerateHashcoins(GetBoolArg("-gen", false), pwalletMain);
 
