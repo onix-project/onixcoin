@@ -3,4 +3,5 @@
 .qmake.stash
 Makefile
 ONIX-qt.app
-build.h
+build/
+qrc_bitcoin.cpp
