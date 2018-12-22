@@ -25,18 +25,19 @@ windows:LIBS += -lshlwapi
 LIBS += $$join(BOOST_LIB_PATH,,-L,) $$join(BDB_LIB_PATH,,-L,) $$join(OPENSSL_LIB_PATH,,-L,) $$join(QRENCODE_LIB_PATH,,-L,)
 LIBS += -lssl -lcrypto -ldb_cxx$$BDB_LIB_SUFFIX
 windows:LIBS += -lws2_32 -lole32 -loleaut32 -luuid -lgdi32
-LIBS += -lboost_system -lboost_filesystem -lboost_program_options -lboost_thread
-BOOST_LIB_SUFFIX=
-BOOST_INCLUDE_PATH=C:/deps/boost_1_53_0
-BOOST_LIB_PATH=C:/deps/boost_1_53_0/stage/lib
+LIBS += -lboost_system-mgw49-mt-s-1_62 -lboost_filesystem-mgw49-mt-s-1_62 -lboost_program_options-mgw49-mt-s-1_62 -lboost_thread-mgw49-mt-s-1_62
+BOOST_LIB_SUFFIX=-mgw49-mt-s-1_62
+BOOST_INCLUDE_PATH=C:/deps/boost_1_62_0
+BOOST_LIB_PATH=C:/deps/boost_1_62_0/stage/lib
 BDB_INCLUDE_PATH=c:/deps/db-4.8.30.NC/build_unix
 BDB_LIB_PATH=c:/deps/db-4.8.30.NC/build_unix
-OPENSSL_INCLUDE_PATH=c:/deps/openssl-1.0.2d/include
-OPENSSL_LIB_PATH=c:/deps/openssl-1.0.2d
+OPENSSL_INCLUDE_PATH=c:/deps/openssl-1.0.2q/include
+OPENSSL_LIB_PATH=c:/deps/openssl-1.0.2q
 MINIUPNPC_INCLUDE_PATH=C:/deps/
 MINIUPNPC_LIB_PATH=C:/deps/miniupnpc
-QRENCODE_INCLUDE_PATH=C:/deps/qrencode-3.4.4
-QRENCODE_LIB_PATH=C:/deps/qrencode-3.4.4/.libs
+QRENCODE_INCLUDE_PATH=C:/deps/qrencode-4.0.2
+QRENCODE_LIB_PATH=C:/deps/qrencode-4.0.2/.libs
+# qrencode-4.0.2. depends on Libpng-1.6.36. (http://www.libpng.org/pub/png/libpng.html)
 
 OBJECTS_DIR = build
 MOC_DIR = build
