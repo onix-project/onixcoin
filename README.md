@@ -26,3 +26,5 @@ cd onixcoin
 qmake USE_UPNP=1 USE_QRCODE=1
 make
 ```
+## releases
+https://github.com/onix-project/onixcoin/releases/latest
