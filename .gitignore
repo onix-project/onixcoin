@@ -5,3 +5,4 @@ Makefile
 ONIX-qt.app
 build/
 qrc_bitcoin.cpp
+!src/leveldb/Makefile

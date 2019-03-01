@@ -57,19 +57,13 @@ namespace Checkpoints
         ( 311000, uint256("0x000000000005531ffe060f16f212179f73b5b810a32e979f921cdaa08e3a794f"))
         ( 312000, uint256("0x00000000000461a40b2a7569279e12685a5b0d01a60684e0914f9b4a03048ceb"))
         ( 313000, uint256("0x000000000001dbfcaf0c2cb23dc869f52163158c86b080580325c46d9901106d"))
-        ( 314000, uint256("0x00000000000003acb4c3f90932348a2ef627a27cfb48f28e9f7130f02004be07"))
-        ( 315000, uint256("0x000000000000434d1217ba061d6ef3e3a971680ae71cea0b9c42c65e64f9be69"))
-        ( 316000, uint256("0x000000000002a7a273852520aeb96b045f95b2fa15e235df9a2c915bb13c3662"))
-        ( 317000, uint256("0x000000000005a82db0ac7190e66d13089526d357ff067e8cef6449ea1b904ff0"))
-        ( 317500, uint256("0x0000000000033b345872b9749fddf57853f05a195c07689bb48a2b0fa72368bc"))
-        ( 317899, uint256("0x000000000003a185e15f9ebd7308bdda33fabc25e3f408dc6634dd787c4c3f8d"))
 
 
         ;
     static const CCheckpointData data = {
         &mapCheckpoints,
-        1551135761, // * UNIX timestamp of last checkpoint block
-        428279,    // * total number of transactions between genesis and last checkpoint
+        1550250653, // * UNIX timestamp of last checkpoint block
+        422566,    // * total number of transactions between genesis and last checkpoint
                     //   (the tx=... number in the SetBestChain debug.log lines)
         1000.0     // * estimated number of transactions per day after checkpoint
     };
