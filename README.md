@@ -11,9 +11,12 @@ _ONIX es una moneda digital enfocada en la privacidad, con transacciones instant
 
 _El siguiente codigo, es para descargar y ejecutar un mini programa que te ayudará con la compilacion de dicha moneda en el respectivo modo (DAEMON o QT)_
 
+## Linux
 _Antes de iniciar, es necesario estar como root_
 ```
-curl https://raw.githubusercontent.com/onix-project/onixcoin/master/compile.sh || sh
+wget https://raw.githubusercontent.com/onix-project/onixcoin/master/compile.sh
+chmod +x compile.sh
+./compile.sh
 ```
 
 ## Autores ✒️
