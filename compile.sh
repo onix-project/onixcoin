@@ -11,7 +11,7 @@ nombre="\033[3;32m"
 ############--COLORES--############
 echo -e $blanco"Programa creado para compilar "$verde"billetera qt"$blanco" y "$verde"demonio (daemon) "$blanco"de "$amarillo"ONIX"
 sleep 2
-echo -e $rojo"Version: "$verde"1.0"
+echo -e $rojo"Version: "$verde"1.1"
 echo -e $rojo"Creado por Programador Anonimo"
 echo ""
 echo ""
@@ -21,16 +21,15 @@ START(){
 echo -e $azul "Opciones:"
 echo -e $magenta "Compilar Wallet qt: "$verde"1"
 echo -e $magenta "Compilar Wallet daemon: "$verde"2"
+echo -e $blanco "Instalar dependencias: "$verde"3"
 echo ""
-echo -e $rojo "Salir: "$verde"3"
+echo -e $rojo "Salir: "$verde"4"
 
 read -p "Elejir opcion: " opcion
 if [ "$opcion" = "1" ]; then
-
 echo ""
-echo -e $blanco"Instalando y compilando"
-apt-get update && apt-get upgrade
-apt-get install build-essential libssl-dev libdb-dev unzip libdb++-dev libboost-all-dev git libssl1.0.0-dbg libminiupnpc-dev libevent-dev libcrypto++-dev libgmp3-dev npm nodejs-legacy curl libtool autotools-dev autoconf pkg-config redis-server libqrencode-dev miniupnpc libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev automake bsdmainutils python3 libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-test-dev libboost-thread-dev libboost-program-options-dev libzmq3-dev   protobuf-compiler qt4-qmake libqtgui4 libqt4-dev -y
+echo -e $blanco"Compilando wallet qt"
+rm -R onixcoin
 git clone https://github.com/onix-project/onixcoin
 cd onixcoin
 mkdir contrib
@@ -38,9 +37,9 @@ qmake USE_UPNP=1 USE_QRCODE=1
 make
 START
 elif [ "$opcion" = "2" ]; then
-echo -e $blanco"Instalando y compilando"
-apt-get update && apt-get upgrade
-apt-get install build-essential libssl-dev libdb-dev unzip libdb++-dev libboost-all-dev git libssl1.0.0-dbg libminiupnpc-dev libevent-dev libcrypto++-dev libgmp3-dev npm nodejs-legacy curl libtool autotools-dev autoconf pkg-config redis-server libqrencode-dev miniupnpc libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev automake bsdmainutils python3 libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-test-dev libboost-thread-dev libboost-program-options-dev libzmq3-dev   protobuf-compiler qt4-qmake libqtgui4 libqt4-dev -y
+echo ""
+echo -e $blanco"Compilando wallet daemon"
+rm -R onixcoin
 git clone https://github.com/onix-project/onixcoin
 cd onixcoin
 mkdir contrib
@@ -48,6 +47,10 @@ cd src
 make -f makefile.unix RELEASE=0
 START
 elif [ "$opcion" = "3" ]; then
+echo ""
+echo -e $verde"Actualizando e instalando dependencias"
+apt-get update && apt-get upgrade && apt-get install build-essential libssl-dev libdb-dev unzip libdb++-dev libboost-all-dev git libssl1.0.0-dbg libminiupnpc-dev libevent-dev libcrypto++-dev libgmp3-dev npm nodejs-legacy curl libtool autotools-dev autoconf pkg-config redis-server libqrencode-dev miniupnpc libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev automake bsdmainutils python3 libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-test-dev libboost-thread-dev libboost-program-options-dev libzmq3-dev   protobuf-compiler qt4-qmake libqtgui4 libqt4-dev -y
+elif [ "$opcion" = "4" ]; then
 echo "Adios"
 exit
 else
@@ -59,7 +62,7 @@ ANTE_START(){
 if [ "$(whoami)" == "root" ] ; then
 START
 else
-echo -e $rojo"No has iniciado root"
+echo -e $rojo"No has iniciado como root"
 fi
 }
 ANTE_START
