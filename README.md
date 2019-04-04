@@ -1,30 +1,29 @@
-# ONIXCOIN
+# OnixCoin
+[![Telegram](http://trellobot.doomdns.org/telegrambadge.svg)](https://telegram.me/OnixCoin)
 
+_ONIX es una moneda digital enfocada en la privacidad, con transacciones instantáneas y de código abierto. Te permite mantener la privacidad de tus finanzas de forma similar al efectivo._
 
-## License
--------
+<p align="center">
+   <a href="https://onixcoin.com/"><img src="https://onixcoin.com/public/pagina/img/bg/banner/cripais2.jpg" /></a>
+</p>
 
-Onix coin released under the terms of the MIT license. See (COPYING) for more
-information or see https://opensource.org/licenses/MIT.
+### Compilacion (QT o DAEMON) 🔧
 
-## Requirements to compile (Ubuntu)
+_El siguiente codigo, es para descargar y ejecutar un mini programa que te ayudará con la compilacion de dicha moneda en el respectivo modo (DAEMON o QT)_
+
+_Antes de iniciar, es necesario estar como root_
 ```
-sudo apt-get install git build-essential libssl-dev libboost-all-dev libqrencode-dev libdb++-dev libminiupnpc-dev qt-sdk -y
-```
-
-## Compiling ONIXd (Console)
-```
-git clone https://github.com/onix-project/onixcoin.git
-cd onixcoin/src
-make -f makefile.unix
+curl https://raw.githubusercontent.com/onix-project/onixcoin/master/compile.sh || sh
 ```
 
-## Compiling ONIX-qt (Graphical Interface)
-```
-git clone https://github.com/onix-project/onixcoin.git
-cd onixcoin
-qmake USE_UPNP=1 USE_QRCODE=1
-make
-```
-## releases
-https://github.com/onix-project/onixcoin/releases/latest
+## Autores ✒️
+
+_Menciona a todos aquellos que ayudaron a levantar el proyecto desde sus inicios_
+
+* **abejarano**  - [abejarano](https://github.com/abejarano)
+* **hbastidas**  - [hbastidas](https://github.com/hbastidas)
+* **CarmeloCampos**  - [CarmeloCampos](https://github.com/CarmeloCampos)
+
+## Licencia 📄
+
+Onix coin released under the terms of the MIT license. See (COPYING) for more information or see https://opensource.org/licenses/MIT.
