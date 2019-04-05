@@ -19,7 +19,7 @@ _El siguiente código, es para descargar y ejecutar un mini programa que te ayud
 ## Linux
 _Antes de iniciar, es necesario estar como root_
 ```
-wget https://raw.githubusercontent.com/onix-project/onixcoin/master/compile.sh
+wget https://raw.githubusercontent.com/onix-project/onixcoin/master/contrib/compile.sh
 chmod +x compile.sh
 ./compile.sh
 ```
