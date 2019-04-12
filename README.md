@@ -4,7 +4,7 @@
 _ONIX es una moneda digital enfocada en la privacidad, con transacciones instantáneas y de código abierto. Te permite mantener la privacidad de tus finanzas de forma similar al efectivo._
 
 <p align="center">
-   <a href="https://onixcoin.com/"><img src="https://onixcoin.com/public/pagina/img/bg/banner/cripais2.jpg" /></a>
+   <a href="https://onixcoin.com/"><img src="https://precio.onixcoin.com/static/calculator/images/bg.jpg" /></a>
 </p>
 
 ## Última versión
@@ -19,7 +19,7 @@ _El siguiente código, es para descargar y ejecutar un mini programa que te ayud
 ## Linux
 _Antes de iniciar, es necesario estar como root_
 ```
-wget https://raw.githubusercontent.com/onix-project/onixcoin/master/contrib/compile.sh
+wget https://raw.githubusercontent.com/onix-project/onixcoin/master/contrib/compile_sh/compile.sh
 chmod +x compile.sh
 ./compile.sh
 ```
