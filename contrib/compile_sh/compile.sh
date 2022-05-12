@@ -50,7 +50,7 @@ START
 elif [ "$opcion" = "3" ]; then
 echo ""
 echo -e $verde"Actualizando e instalando dependencias"
-apt-get update && apt-get upgrade && apt-get install build-essential libssl-dev libdb-dev unzip libdb++-dev libboost-all-dev git libssl1.0.0-dbg libminiupnpc-dev libevent-dev libcrypto++-dev libgmp3-dev npm nodejs-legacy curl libtool autotools-dev autoconf pkg-config redis-server libqrencode-dev miniupnpc libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev automake bsdmainutils python3 libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-test-dev libboost-thread-dev libboost-program-options-dev libzmq3-dev   protobuf-compiler qt4-qmake libqtgui4 libqt4-dev -y
+apt-get update && apt-get upgrade && apt-get install build-essential libssl1.0-dev libdb-dev unzip libdb++-dev libboost-all-dev git libminiupnpc-dev libevent-dev libcrypto++-dev libgmp3-dev npm nodejs-legacy curl libtool autotools-dev autoconf pkg-config redis-server libqrencode-dev miniupnpc libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev automake bsdmainutils python3 libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-test-dev libboost-thread-dev libboost-program-options-dev libzmq3-dev   protobuf-compiler qt4-qmake libqtgui4 libqt4-dev -y
 elif [ "$opcion" = "4" ]; then
 echo ""
 echo -e $blanco"Configurar rpcuser"$verde
